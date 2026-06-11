@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BREAK THE ICE | 一般社団法人北海道ブレイクダンス協会 スポンサー募集</title>
+<meta name="description" content="2028年長野国スポで公開競技となったブレイキン。北海道の強化選手と共に未来をつくるスポンサー・協賛パートナーを募集しています。">
+<meta property="og:title" content="BREAK THE ICE — 北海道ブレイクダンス協会 スポンサー募集">
+<meta property="og:description" content="パリ五輪で世界が熱狂したブレイキン。北海道から世界へ挑む選手たちを、共に支えるパートナーを募集します。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06070c;
+  --bg2:#0b0d16;
+  --panel:#10131f;
+  --ice:#56e8ff;
+  --ice-deep:#1fa8d8;
+  --heat:#ff2e63;
+  --gold:#ffd166;
+  --txt:#eef2f7;
+  --muted:#8b94a8;
+  --line:rgba(255,255,255,.09);
+  --en:"Anton",sans-serif;
+  --jp:"Noto Sans JP",sans-serif;
+  --mono:"Space Grotesk",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:var(--jp);
+  font-weight:400;
+  line-height:1.9;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--ice);color:#03141c}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ===== noise overlay ===== */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ===== loader ===== */
+#loader{
+  position:fixed;inset:0;z-index:1000;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  transition:opacity .6s ease,visibility .6s;
+}
+#loader.done{opacity:0;visibility:hidden}
+#loader .l-word{
+  font-family:var(--en);font-size:clamp(40px,8vw,90px);letter-spacing:.04em;
+  color:transparent;-webkit-text-stroke:1.5px var(--ice);
+  animation:loaderPulse 1.1s ease-in-out infinite alternate;
+}
+#loader .l-bar{width:min(280px,60vw);height:2px;background:rgba(255,255,255,.12);overflow:hidden}
+#loader .l-bar i{display:block;height:100%;width:0;background:var(--ice);animation:loadFill 1.4s ease forwards}
+@keyframes loaderPulse{from{opacity:.45}to{opacity:1}}
+@keyframes loadFill{to{width:100%}}
+
+/* ===== scroll progress ===== */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--ice),var(--heat));}
+
+/* ===== canvas bg ===== */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ===== nav ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,4vw,48px);
+  transition:background .4s,backdrop-filter .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{background:rgba(6,7,12,.72);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav-logo{display:flex;flex-direction:column;line-height:1.25}
+.nav-logo b{font-family:var(--en);font-size:18px;letter-spacing:.08em;color:var(--txt)}
+.nav-logo span{font-size:10px;color:var(--muted);letter-spacing:.14em}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--muted);position:relative;padding:4px 0;transition:color .3s}
+.nav-links a:hover{color:var(--ice)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ice);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+  border:1px solid var(--ice);color:var(--ice);padding:10px 22px;
+  position:relative;overflow:hidden;transition:color .3s;
+}
+.nav-cta::before{content:"";position:absolute;inset:0;background:var(--ice);transform:translateY(101%);transition:transform .35s cubic-bezier(.7,0,.2,1);z-index:-1}
+.nav-cta:hover{color:#03141c}
+.nav-cta:hover::before{transform:translateY(0)}
+@media(max-width:860px){.nav-links a{display:none}.nav-links .nav-cta{display:inline-block}}
+
+/* ===== hero ===== */
+.hero{
+  position:relative;z-index:1;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px clamp(20px,5vw,64px) 80px;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.4;
+  background:
+    linear-gradient(90deg,rgba(6,7,12,.94) 32%,rgba(6,7,12,.55) 70%,rgba(6,7,12,.75)),
+    linear-gradient(0deg,var(--bg) 2%,transparent 36%),
+    linear-gradient(180deg,var(--bg) 0%,transparent 26%),
+    url("images/photo-bboy-u15.jpg") center 30%/cover no-repeat;
+}
+.ph{display:inline-block}
+.hero-label{
+  font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);letter-spacing:.3em;
+  color:var(--ice);margin-bottom:26px;display:flex;align-items:center;gap:14px;
+}
+.hero-label::before{content:"";width:46px;height:1px;background:var(--ice)}
+h1{
+  font-family:var(--en);font-weight:400;
+  font-size:clamp(58px,12.5vw,196px);
+  line-height:.96;letter-spacing:.01em;text-transform:uppercase;
+}
+h1 .line{display:block;overflow:hidden}
+h1 .line>span{display:block;transform:translateY(110%);animation:riseUp 1s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .line:nth-child(1)>span{animation-delay:.15s}
+h1 .line:nth-child(2)>span{animation-delay:.3s}
+h1 .line:nth-child(3)>span{animation-delay:.45s}
+@keyframes riseUp{to{transform:translateY(0)}}
+h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--txt)}
+h1 .ice{color:var(--ice);text-shadow:0 0 60px rgba(86,232,255,.35)}
+h1 .glitchable{position:relative;display:inline-block}
+.hero-sub{
+  max-width:620px;margin-top:34px;color:var(--muted);
+  font-size:clamp(14px,1.4vw,16px);
+  opacity:0;animation:fadeIn 1s ease .9s forwards;
+}
+.hero-sub strong{color:var(--txt);font-weight:700}
+@keyframes fadeIn{to{opacity:1}}
+.hero-meta{
+  display:flex;gap:clamp(20px,4vw,56px);margin-top:48px;flex-wrap:wrap;
+  opacity:0;animation:fadeIn 1s ease 1.15s forwards;
+}
+.hero-meta div{border-left:1px solid var(--line);padding-left:18px}
+.hero-meta b{font-family:var(--en);font-size:clamp(22px,2.6vw,34px);color:var(--txt);display:block;line-height:1.1;letter-spacing:.02em}
+.hero-meta span{font-size:11px;color:var(--muted);letter-spacing:.12em}
+.scroll-hint{
+  position:absolute;bottom:120px;right:clamp(20px,5vw,64px);
+  font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--muted);
+  writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;
+}
+.scroll-hint::after{content:"";width:1px;height:56px;background:linear-gradient(var(--ice),transparent);animation:scrollLine 1.8s ease-in-out infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:680px){.scroll-hint{display:none}}
+
+/* ===== marquee ===== */
+.marquee{
+  position:relative;z-index:1;overflow:hidden;white-space:nowrap;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:16px 0;background:rgba(255,255,255,.015);
+}
+.marquee-track{display:inline-flex;gap:0;animation:scrollX 28s linear infinite}
+.marquee.reverse .marquee-track{animation-direction:reverse}
+.marquee span{
+  font-family:var(--en);font-size:clamp(20px,3vw,34px);letter-spacing:.06em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);
+  padding:0 28px;text-transform:uppercase;
+}
+.marquee span.fill{color:var(--ice);-webkit-text-stroke:0}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ===== common section ===== */
+section{position:relative;z-index:1;padding:clamp(90px,12vw,160px) clamp(20px,5vw,64px)}
+.sec-head{margin-bottom:clamp(44px,6vw,80px)}
+.sec-label{
+  font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--ice);
+  display:flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.sec-label::before{content:"";width:36px;height:1px;background:var(--ice)}
+.sec-title{
+  font-family:var(--en);font-weight:400;text-transform:uppercase;
+  font-size:clamp(38px,7vw,96px);line-height:1.02;letter-spacing:.01em;
+}
+.sec-title .stroke{color:transparent;-webkit-text-stroke:1.5px var(--txt)}
+.sec-lead{max-width:640px;color:var(--muted);margin-top:22px;font-size:clamp(13px,1.3vw,15px)}
+.sec-lead strong{color:var(--txt)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== why / milestones ===== */
+#why{background:linear-gradient(180deg,transparent,rgba(86,232,255,.025) 50%,transparent)}
+.milestones{display:flex;flex-direction:column}
+.milestone{
+  display:grid;grid-template-columns:minmax(140px,300px) 1fr;gap:clamp(16px,4vw,60px);
+  padding:clamp(30px,4vw,52px) 0;border-top:1px solid var(--line);align-items:center;
+  transition:background .4s,padding-left .4s;
+}
+.milestone:last-child{border-bottom:1px solid var(--line)}
+.milestone:hover{background:rgba(86,232,255,.03);padding-left:14px}
+.milestone .year{
+  font-family:var(--en);font-size:clamp(52px,8vw,110px);line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px var(--ice);letter-spacing:.02em;
+}
+.milestone:hover .year{color:var(--ice);-webkit-text-stroke:0;text-shadow:0 0 50px rgba(86,232,255,.4);transition:.3s}
+.milestone h3{font-size:clamp(17px,2vw,24px);font-weight:900;margin-bottom:8px;letter-spacing:.02em}
+.milestone h3 em{font-style:normal;color:var(--ice)}
+.milestone p{color:var(--muted);font-size:clamp(13px,1.25vw,14.5px);max-width:680px}
+.milestone .tag{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;
+  border:1px solid rgba(86,232,255,.4);color:var(--ice);padding:3px 12px;margin-bottom:12px;
+}
+.milestone.heat .tag{border-color:rgba(255,46,99,.5);color:var(--heat)}
+.milestone.heat .year{-webkit-text-stroke-color:var(--heat)}
+.milestone.heat:hover .year{color:var(--heat);text-shadow:0 0 50px rgba(255,46,99,.4)}
+@media(max-width:640px){.milestone{grid-template-columns:1fr;gap:10px}}
+
+/* ===== vision ===== */
+#vision{text-align:left}
+.vision-inner{max-width:1100px;margin:0 auto}
+.vision-line{
+  font-size:clamp(26px,4.6vw,58px);font-weight:900;line-height:1.5;letter-spacing:.02em;
+  margin-bottom:.4em;
+}
+.vision-line .hl{
+  background:linear-gradient(90deg,var(--ice),#9b6bff,var(--heat));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.vision-line .small{font-size:.5em;font-weight:500;color:var(--muted)}
+.vision-note{max-width:680px;color:var(--muted);margin-top:40px;font-size:clamp(13px,1.3vw,15px)}
+.vision-note strong{color:var(--txt)}
+
+/* ===== plans ===== */
+#plans{background:var(--bg2)}
+.plan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:10px}
+.plan{
+  position:relative;border:1px solid var(--line);background:var(--panel);
+  padding:clamp(28px,3.5vw,44px);overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s;
+}
+.plan::before{ /* spotlight */
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(86,232,255,.09),transparent 60%);
+}
+.plan:hover{transform:translateY(-6px);border-color:rgba(86,232,255,.45);box-shadow:0 24px 60px -28px rgba(86,232,255,.25)}
+.plan:hover::before{opacity:1}
+.plan-no{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--muted)}
+.plan-name-en{font-family:var(--en);font-size:clamp(24px,2.6vw,36px);text-transform:uppercase;letter-spacing:.02em;line-height:1.05;margin-top:14px}
+.plan-name-jp{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.1em;margin-top:6px}
+.plan-price{margin:24px 0 6px;display:flex;align-items:baseline;gap:8px}
+.plan-price b{font-family:var(--en);font-size:clamp(36px,4vw,54px);line-height:1;color:var(--ice);letter-spacing:.02em}
+.plan-price span{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.plan-price small{font-size:11px;color:var(--muted)}
+.plan ul{margin-top:22px;border-top:1px solid var(--line)}
+.plan li{
+  display:flex;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);
+  font-size:13.5px;color:#c7cedb;
+}
+.plan li::before{content:"—";color:var(--ice);font-family:var(--mono);flex-shrink:0}
+.plan.main{
+  grid-column:1 / -1;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,60px);
+  border:1px solid rgba(86,232,255,.5);
+  background:linear-gradient(135deg,rgba(86,232,255,.07),var(--panel) 45%);
+}
+.plan.main::after{
+  content:"MAIN";position:absolute;top:-8px;right:18px;
+  font-family:var(--en);font-size:clamp(70px,9vw,130px);line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(86,232,255,.16);pointer-events:none;
+}
+.plan .badge{
+  position:absolute;top:0;left:0;background:var(--ice);color:#03141c;
+  font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;padding:6px 16px;
+}
+.plan.heat-border:hover{border-color:rgba(255,46,99,.5);box-shadow:0 24px 60px -28px rgba(255,46,99,.25)}
+.plan.heat-border::before{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,46,99,.08),transparent 60%)}
+@media(max-width:860px){.plan-grid{grid-template-columns:1fr}.plan.main{grid-template-columns:1fr}}
+
+/* ===== benefits table ===== */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:760px;background:var(--panel)}
+th,td{padding:16px 18px;border-bottom:1px solid var(--line);font-size:13px;text-align:center}
+th{font-family:var(--mono);letter-spacing:.08em;font-size:11.5px;color:var(--muted);background:rgba(255,255,255,.02)}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--bg2);min-width:200px}
+td:first-child{color:#c7cedb;font-weight:500}
+th.hl-col{color:var(--ice)}
+td .ok{color:var(--ice);font-weight:700;font-size:15px}
+td .no{color:#39404f}
+tr:hover td{background:rgba(86,232,255,.03)}
+tr:hover td:first-child{background:#0e1220}
+
+/* ===== flow ===== */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:step}
+.step{
+  border:1px solid var(--line);padding:30px 24px;position:relative;background:rgba(255,255,255,.012);
+  transition:border-color .3s,transform .3s;
+}
+.step:hover{border-color:rgba(86,232,255,.4);transform:translateY(-4px)}
+.step::before{
+  counter-increment:step;content:"0" counter(step);
+  font-family:var(--en);font-size:44px;color:transparent;-webkit-text-stroke:1px var(--ice);
+  display:block;line-height:1;margin-bottom:18px;
+}
+.step h4{font-size:15px;font-weight:700;margin-bottom:8px;letter-spacing:.04em}
+.step p{font-size:12.5px;color:var(--muted);line-height:1.8}
+@media(max-width:860px){.flow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
+
+/* ===== gallery ===== */
+#gallery{padding:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.g-head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:18px clamp(20px,5vw,64px) 0;
+}
+.g-head h3{font-family:var(--mono);font-size:12px;letter-spacing:.26em;color:var(--ice)}
+.g-head small{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em}
+.g-track{display:flex;gap:14px;padding:18px 0 22px;width:max-content;animation:scrollX 38s linear infinite}
+#gallery:hover .g-track{animation-play-state:paused}
+.g-track figure{
+  width:clamp(250px,30vw,440px);aspect-ratio:3/2;overflow:hidden;flex-shrink:0;
+  border:1px solid var(--line);position:relative;
+}
+.g-track img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(.4) contrast(1.05);transition:filter .5s,transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.g-track figure:hover img{filter:none;transform:scale(1.06)}
+
+/* ===== contact ===== */
+#contact{
+  text-align:center;
+  background:
+    radial-gradient(900px 480px at 50% 115%,rgba(86,232,255,.13),transparent 65%),
+    radial-gradient(700px 380px at 80% -10%,rgba(255,46,99,.08),transparent 60%);
+}
+.contact-title{
+  font-family:var(--en);font-size:clamp(44px,9.5vw,140px);line-height:1;text-transform:uppercase;
+}
+.contact-title .stroke{color:transparent;-webkit-text-stroke:1.5px var(--txt)}
+.contact-title .ice{color:var(--ice)}
+#contact p.lead{color:var(--muted);max-width:560px;margin:30px auto 0;font-size:clamp(13px,1.3vw,15px)}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:16px;margin-top:52px;
+  font-family:var(--mono);font-size:14px;letter-spacing:.22em;
+  border:1px solid var(--ice);color:var(--ice);padding:22px 56px;
+  position:relative;overflow:hidden;transition:color .35s;will-change:transform;
+}
+.cta-btn::before{content:"";position:absolute;inset:0;background:var(--ice);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.7,0,.2,1);z-index:0}
+.cta-btn:hover{color:#03141c}
+.cta-btn:hover::before{transform:scaleX(1)}
+.cta-btn b,.cta-btn i{position:relative;z-index:1}
+.cta-btn i{font-style:normal;transition:transform .3s}
+.cta-btn:hover i{transform:translateX(8px)}
+.contact-note{margin-top:26px;font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+
+/* ===== footer ===== */
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:46px clamp(20px,5vw,64px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .f-logo b{font-family:var(--en);font-size:16px;letter-spacing:.08em}
+footer .f-logo span{display:block;font-size:10.5px;color:var(--muted);letter-spacing:.12em}
+footer small{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.12em}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="l-word">BREAKIN&rsquo;</div>
+  <div class="l-bar"><i></i></div>
+</div>
+
+<div id="progress"></div>
+<canvas id="bg"></canvas>
+
+<nav id="nav">
+  <a class="nav-logo" href="./">
+    <b>HOKKAIDO BREAKIN&rsquo;</b>
+    <span>一般社団法人北海道ブレイクダンス協会</span>
+  </a>
+  <div class="nav-links">
+    <a href="./">HOME</a>
+    <a href="#why">WHY NOW</a>
+    <a href="#plans">SPONSORSHIP</a>
+    <a href="#flow">FLOW</a>
+    <a class="nav-cta" href="#contact">CONTACT</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <p class="hero-label">SPONSORSHIP PROGRAM 2026 — 一般社団法人北海道ブレイクダンス協会</p>
+    <h1>
+      <span class="line"><span class="glitchable">BREAK</span></span>
+      <span class="line"><span class="stroke glitchable">THE ICE,</span></span>
+      <span class="line"><span><span class="ice glitchable">HOKKAIDO</span>.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span class="ph">氷の大地から、</span><span class="ph">世界の頂点へ。</span><br>
+      <span class="ph">パリ五輪で世界が熱狂したブレイキンは、</span><span class="ph"><strong>2028年長野国スポの公開競技</strong>へ。</span><br>
+      <span class="ph">北海道はすでに、</span><span class="ph">未来を担う<strong>強化選手の選定を完了</strong>しました。</span><br>
+      <span class="ph">その次の一歩を、</span><span class="ph">共に踏み出すパートナーを募集します。</span>
+    </p>
+    <div class="hero-meta">
+      <div><b data-count="2024">0</b><span>パリ五輪 正式競技</span></div>
+      <div><b data-count="2028">0</b><span>長野国スポ 公開競技</span></div>
+      <div><b>NOW</b><span>強化選手 選定完了</span></div>
+    </div>
+    <div class="scroll-hint">SCROLL</div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Hokkaido Breakin&rsquo;</span><span class="fill">Sponsorship 2026</span>
+      <span>Road to Nagano 2028</span><span class="fill">Break the Ice</span>
+      <span>Hokkaido Breakin&rsquo;</span><span class="fill">Sponsorship 2026</span>
+      <span>Road to Nagano 2028</span><span class="fill">Break the Ice</span>
+    </div>
+  </div>
+
+  <!-- ============ WHY NOW ============ -->
+  <section id="why">
+    <div class="sec-head reveal">
+      <p class="sec-label">WHY BREAKIN&rsquo;, WHY NOW</p>
+      <h2 class="sec-title">THE MOMENT<br><span class="stroke">IS NOW.</span></h2>
+      <p class="sec-lead">ストリート発のカルチャーは、いま世界最高峰の競技スポーツへ。その熱は確実に、北海道に届いています。</p>
+    </div>
+    <div class="milestones">
+      <div class="milestone reveal">
+        <div class="year">2024</div>
+        <div>
+          <span class="tag">PARIS OLYMPICS</span>
+          <h3>パリオリンピックで<em>五輪種目</em>として世界が熱狂</h3>
+          <p>ブレイキンが五輪の舞台に初登場。1on1のバトルがもつ即興性とドラマが世界中の視聴者を魅了し、若年層を中心に競技人口・注目度が急上昇しています。</p>
+        </div>
+      </div>
+      <div class="milestone heat reveal">
+        <div class="year">2028</div>
+        <div>
+          <span class="tag">KOKUSPO NAGANO</span>
+          <h3>第82回国民スポーツ大会（長野）で<em>公開競技</em>に決定</h3>
+          <p>2028年に長野県で開催される国スポにて、「ダンススポーツ」競技の1種目としてブレイキンが公開競技として実施されることが発表。国内競技としての地位がさらに高まり、都道府県対抗の強化が本格化します。</p>
+        </div>
+      </div>
+      <div class="milestone reveal">
+        <div class="year">NOW</div>
+        <div>
+          <span class="tag">HOKKAIDO</span>
+          <h3>北海道は<em>強化選手の選定を完了</em>。次は活動の本格化へ</h3>
+          <p>北海道では昨年度から国スポに向けた強化選手の選定を実施。未来に日本、そして世界で活躍する選手たちが既に選ばれ、ここから遠征・大会・育成と、活動を一気に加速させるフェーズに入ります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee reverse" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="fill">Support the Scene</span><span>From Hokkaido to the World</span>
+      <span class="fill">Power the Next Generation</span><span>Toprock / Footwork / Freeze / Powermove</span>
+      <span class="fill">Support the Scene</span><span>From Hokkaido to the World</span>
+      <span class="fill">Power the Next Generation</span><span>Toprock / Footwork / Freeze / Powermove</span>
+    </div>
+  </div>
+
+  <!-- ============ VISION ============ -->
+  <section id="vision">
+    <div class="vision-inner">
+      <div class="sec-head reveal">
+        <p class="sec-label">OUR VISION</p>
+      </div>
+      <p class="vision-line reveal">挑戦する選手のそばに、<br><span class="hl">挑戦する企業を。</span></p>
+      <p class="vision-note reveal">
+        <span class="ph">私たちは、</span><span class="ph">選手の育成・大会の開催にとどまらず、</span><span class="ph"><strong>自治体を巻き込みながら</strong></span><span class="ph"><strong>北海道全域にブレイキンの裾野を広げていく</strong>ことを</span><span class="ph">目指しています。</span><br>
+        <span class="ph">体験会やワークショップで</span><span class="ph">子どもたちが初めてフロアに立つ瞬間から、</span><span class="ph">強化選手が世界の舞台で</span><span class="ph">名前を呼ばれる瞬間まで——。</span><br>
+        <span class="ph">その全てのシーンに、</span><span class="ph">パートナー企業・個人の皆様の</span><span class="ph">名前と想いを乗せて届けます。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PLANS ============ -->
+  <section id="plans">
+    <div class="sec-head reveal">
+      <p class="sec-label">SPONSORSHIP MENU</p>
+      <h2 class="sec-title">JOIN<br><span class="stroke">THE CYPHER.</span></h2>
+      <p class="sec-lead">企業規模や関わり方に合わせて、5つの参加プランをご用意しています。すべてのプランが、選手の挑戦に直接つながります。</p>
+    </div>
+
+    <div class="plan-grid">
+      <div class="plan main reveal">
+        <span class="badge">RECOMMENDED</span>
+        <div>
+          <p class="plan-no">PLAN 01</p>
+          <p class="plan-name-en">Annual Main Sponsor</p>
+          <p class="plan-name-jp">年間メインスポンサー</p>
+          <div class="plan-price"><b>&yen;500,000</b><span>&mdash;</span><small>年間／〜</small></div>
+        </div>
+        <ul>
+          <li>通年での選手・大会への協賛（最上位露出）</li>
+          <li>企業様向けワークショップ・イベントの企画</li>
+          <li>主催大会・イベントへのご招待</li>
+          <li>サイト・SNS・大会会場での最大露出</li>
+        </ul>
+      </div>
+
+      <div class="plan heat-border reveal">
+        <p class="plan-no">PLAN 02</p>
+        <p class="plan-name-en">Event Main Sponsor</p>
+        <p class="plan-name-jp">大会メインスポンサー</p>
+        <div class="plan-price"><b>&yen;300,000</b><span>&mdash;</span><small>〜</small></div>
+        <ul>
+          <li>冠大会の実施と大会名・会場での露出</li>
+          <li>大会におけるコンテンツ企画への参画</li>
+          <li>大会・イベントへのご招待</li>
+        </ul>
+      </div>
+
+      <div class="plan reveal">
+        <p class="plan-no">PLAN 03</p>
+        <p class="plan-name-en">Sponsor</p>
+        <p class="plan-name-jp">スポンサー</p>
+        <div class="plan-price"><b>&yen;100,000</b><span>&mdash;</span><small>〜</small></div>
+        <ul>
+          <li>公式サイトへのロゴ・社名掲載</li>
+          <li>各種SNSでのご紹介・掲載</li>
+          <li>イベントへのご招待</li>
+        </ul>
+      </div>
+
+      <div class="plan reveal">
+        <p class="plan-no">PLAN 04</p>
+        <p class="plan-name-en">Supporter</p>
+        <p class="plan-name-jp">協賛</p>
+        <div class="plan-price"><b>&yen;50,000</b><span>&mdash;</span><small>〜</small></div>
+        <ul>
+          <li>公式サイトへのお名前掲載</li>
+          <li>各種SNSでのご紹介・掲載</li>
+        </ul>
+      </div>
+
+      <div class="plan reveal" style="grid-column:1/-1">
+        <p class="plan-no">PLAN 05</p>
+        <p class="plan-name-en">Crew &mdash; Personal Support</p>
+        <p class="plan-name-jp">小口支援（個人の皆様向け）</p>
+        <div class="plan-price"><b>&yen;10,000</b><span>&mdash;</span><small>〜</small></div>
+        <ul>
+          <li>体験会・ワークショップへの優先ご招待</li>
+          <li>北海道のシーンを一緒に育てる、いちばん身近な応援のかたち</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFITS ============ -->
+  <section id="benefits">
+    <div class="sec-head reveal">
+      <p class="sec-label">BENEFITS</p>
+      <h2 class="sec-title">WHAT YOU <span class="stroke">GET.</span></h2>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>特典内容</th>
+            <th class="hl-col">年間メイン<br>&yen;50万〜</th>
+            <th>大会メイン<br>&yen;30万〜</th>
+            <th>スポンサー<br>&yen;10万〜</th>
+            <th>協賛<br>&yen;5万〜</th>
+            <th>小口支援<br>&yen;1万〜</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>通年での選手・大会協賛</td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>企業向けワークショップ企画</td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>冠大会の実施・露出</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>大会コンテンツ企画</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>イベントご招待</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>公式サイト掲載</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>各種SNS掲載</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td></tr>
+          <tr><td>体験会・WS優先ご招待</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ FLOW ============ -->
+  <section id="flow">
+    <div class="sec-head reveal">
+      <p class="sec-label">FLOW</p>
+      <h2 class="sec-title">HOW TO <span class="stroke">JOIN.</span></h2>
+    </div>
+    <div class="flow">
+      <div class="step reveal"><h4>お問い合わせ</h4><p>フォームまたはメールにてご連絡ください。資料のみのご請求も歓迎です。</p></div>
+      <div class="step reveal"><h4>ヒアリング</h4><p>貴社の目的・ご予算に合わせて、最適なプランと活用方法をご提案します。</p></div>
+      <div class="step reveal"><h4>ご契約</h4><p>協賛内容を確定し、契約を締結。掲載素材などをご準備いただきます。</p></div>
+      <div class="step reveal"><h4>活動開始</h4><p>露出・イベント企画がスタート。活動レポートも定期的にお届けします。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" aria-label="活動写真ギャラリー">
+    <div class="g-head">
+      <h3>SCENE — ALL HOKKAIDO CHAMPIONSHIP</h3>
+      <small>PHOTO: JDSF HOKKAIDO BREAKING / HBDA</small>
+    </div>
+    <div class="g-track">
+      <figure><img src="images/photo-venue.jpg" alt="ALL HOKKAIDO CHAMPIONSHIP 会場全景" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-freeze.jpg" alt="U-15 BGIRL 1on1バトル" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-bgirl.jpg" alt="BGIRLバトルのフットワーク" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-bboy-u15.jpg" alt="U-15 BBOYのヘッドスピン" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-staff.jpg" alt="大会MC" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-venue.jpg" alt="" aria-hidden="true" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-freeze.jpg" alt="" aria-hidden="true" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-bgirl.jpg" alt="" aria-hidden="true" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-bboy-u15.jpg" alt="" aria-hidden="true" onerror="this.parentNode.remove()"></figure>
+      <figure><img src="images/photo-staff.jpg" alt="" aria-hidden="true" onerror="this.parentNode.remove()"></figure>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="reveal">
+      <h2 class="contact-title">LET&rsquo;S BREAK<br><span class="stroke">TOGETHER</span><span class="ice">.</span></h2>
+      <p class="lead">
+        プラン内容のご相談、お見積もり、まずは話を聞いてみたい——どんな段階でも歓迎です。
+        北海道のブレイキンシーンの未来を、一緒につくりましょう。
+      </p>
+      <a class="cta-btn" id="magnet" href="mailto:info@example.com?subject=%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B5%E3%83%BC%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">
+        <b>CONTACT US</b><i>&rarr;</i>
+      </a>
+      <p class="contact-note">一般社団法人北海道ブレイクダンス協会 スポンサー担当窓口</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="f-logo">
+    <b>HOKKAIDO BREAKIN&rsquo;</b>
+    <span>一般社団法人北海道ブレイクダンス協会</span>
+  </div>
+  <small>&copy; 2026 HOKKAIDO BREAKDANCE ASSOCIATION. ALL RIGHTS RESERVED.</small>
+</footer>
+
+<script>
+/* ===== loader ===== */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('done'),900);
+});
+setTimeout(()=>document.getElementById('loader').classList.add('done'),2600); // fail-safe
+
+/* ===== scroll progress + nav ===== */
+const progress=document.getElementById('progress');
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  nav.classList.toggle('scrolled',h.scrollTop>40);
+},{passive:true});
+
+/* ===== reveal on scroll ===== */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== count up ===== */
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.count,dur=1400,t0=performance.now();
+    (function tick(t){
+      const p=Math.min((t-t0)/dur,1),ease=1-Math.pow(1-p,4);
+      el.textContent=Math.round(target*ease);
+      if(p<1)requestAnimationFrame(tick);
+    })(t0);
+    cio.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* ===== card spotlight ===== */
+document.querySelectorAll('.plan').forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    card.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+
+/* ===== magnetic CTA ===== */
+const mag=document.getElementById('magnet');
+if(matchMedia('(pointer:fine)').matches&&mag){
+  mag.addEventListener('pointermove',e=>{
+    const r=mag.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.25,y=(e.clientY-r.top-r.height/2)*.35;
+    mag.style.transform=`translate(${x}px,${y}px)`;
+  });
+  mag.addEventListener('pointerleave',()=>{mag.style.transform='';mag.style.transition='transform .5s cubic-bezier(.2,.8,.2,1)';
+    setTimeout(()=>mag.style.transition='',500);});
+}
+
+/* ===== hero glitch on hover ===== */
+const CHARS='!<>-_\\/[]{}—=+*^?#________';
+document.querySelectorAll('.glitchable').forEach(el=>{
+  const original=el.textContent;let busy=false;
+  el.addEventListener('pointerenter',()=>{
+    if(busy)return;busy=true;
+    let frame=0;const total=14;
+    (function scramble(){
+      el.textContent=original.split('').map((c,i)=>{
+        if(c===' ')return c;
+        return i<frame/total*original.length?original[i]:CHARS[Math.random()*CHARS.length|0];
+      }).join('');
+      if(frame++<total)requestAnimationFrame(scramble);
+      else{el.textContent=original;busy=false;}
+    })();
+  });
+});
+
+/* ===== gallery: hide section if no photos placed yet ===== */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const g=document.getElementById('gallery');
+    if(g&&!g.querySelector('.g-track figure'))g.style.display='none';
+  },800);
+});
+
+/* ===== bg canvas: drifting ice particles + beat pulse ===== */
+const cv=document.getElementById('bg'),ctx=cv.getContext('2d');
+let W,H,parts=[],mx=.5,my=.5;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function resize(){
+  W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;
+  cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';
+  const n=Math.min(120,Math.floor(innerWidth/12));
+  parts=Array.from({length:n},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:(Math.random()*1.8+.4)*devicePixelRatio,
+    vx:(Math.random()-.5)*.18*devicePixelRatio,
+    vy:(Math.random()*.32+.08)*devicePixelRatio,
+    o:Math.random()*.5+.12,
+    hot:Math.random()<.06,
+    ph:Math.random()*Math.PI*2
+  }));
+}
+resize();addEventListener('resize',resize);
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight;},{passive:true});
+let t=0;
+(function draw(){
+  if(reduced){ctx.clearRect(0,0,W,H);return;}
+  t+=.016;
+  ctx.clearRect(0,0,W,H);
+  /* ambient glow following pointer */
+  const gx=W*(0.3+mx*0.4),gy=H*(0.25+my*0.35);
+  const g=ctx.createRadialGradient(gx,gy,0,gx,gy,W*.42);
+  g.addColorStop(0,'rgba(86,232,255,0.05)');
+  g.addColorStop(.55,'rgba(86,100,255,0.02)');
+  g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  /* beat pulse rings */
+  const beat=(t%2.4)/2.4;
+  if(beat<.85){
+    ctx.beginPath();
+    ctx.arc(W*.82,H*.78,beat*W*.16,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(86,232,255,${(1-beat)*.06})`;
+    ctx.lineWidth=1.2*devicePixelRatio;ctx.stroke();
+  }
+  /* particles */
+  for(const p of parts){
+    p.x+=p.vx+Math.sin(t+p.ph)*.12*devicePixelRatio+(mx-.5)*.5*devicePixelRatio;
+    p.y+=p.vy;
+    if(p.y>H+10){p.y=-10;p.x=Math.random()*W;}
+    if(p.x>W+10)p.x=-10;if(p.x<-10)p.x=W+10;
+    const tw=p.o*(0.7+0.3*Math.sin(t*2+p.ph));
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.hot?`rgba(255,46,99,${tw})`:`rgba(150,235,255,${tw})`;
+    ctx.fill();
+    if(p.hot){
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,46,99,${tw*.12})`;ctx.fill();
+    }
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
