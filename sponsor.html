@@ -105,20 +105,28 @@ nav.scrolled{background:rgba(6,7,12,.72);backdrop-filter:blur(14px);border-color
   display:flex;flex-direction:column;justify-content:center;
   padding:120px clamp(20px,5vw,64px) 80px;
 }
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:-1;opacity:.4;
+/* sponsor hero: gold / warm theme — TOPと差別化 */
+.hero{
   background:
-    linear-gradient(90deg,rgba(6,7,12,.94) 32%,rgba(6,7,12,.55) 70%,rgba(6,7,12,.75)),
-    linear-gradient(0deg,var(--bg) 2%,transparent 36%),
-    linear-gradient(180deg,var(--bg) 0%,transparent 26%),
-    url("images/photo-bboy-u15.jpg") center 30%/cover no-repeat;
+    radial-gradient(900px 520px at 78% 18%,rgba(255,209,102,.1),transparent 60%),
+    radial-gradient(700px 480px at 8% 96%,rgba(255,140,40,.06),transparent 62%);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.46;
+  background:
+    linear-gradient(96deg,rgba(8,6,3,.96) 30%,rgba(22,14,4,.62) 66%,rgba(46,28,6,.5)),
+    linear-gradient(0deg,var(--bg) 2%,transparent 40%),
+    url("images/photo-freeze.jpg") center 32%/cover no-repeat;
+  filter:sepia(.18) saturate(1.05);
 }
 .ph{display:inline-block}
 .hero-label{
   font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);letter-spacing:.3em;
-  color:var(--ice);margin-bottom:26px;display:flex;align-items:center;gap:14px;
+  color:var(--gold);margin-bottom:24px;display:inline-flex;align-items:center;gap:14px;
+  border:1px solid rgba(255,209,102,.4);padding:9px 18px;align-self:flex-start;
+  background:rgba(30,20,6,.4);
 }
-.hero-label::before{content:"";width:46px;height:1px;background:var(--ice)}
+.hero-label::before{content:"";width:32px;height:1px;background:var(--gold)}
 h1{
   font-family:var(--en);font-weight:400;
   font-size:clamp(58px,12.5vw,196px);
@@ -130,8 +138,8 @@ h1 .line:nth-child(1)>span{animation-delay:.15s}
 h1 .line:nth-child(2)>span{animation-delay:.3s}
 h1 .line:nth-child(3)>span{animation-delay:.45s}
 @keyframes riseUp{to{transform:translateY(0)}}
-h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--txt)}
-h1 .ice{color:var(--ice);text-shadow:0 0 60px rgba(86,232,255,.35)}
+h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--gold)}
+h1 .ice{color:var(--gold);text-shadow:0 0 60px rgba(255,209,102,.4)}
 h1 .glitchable{position:relative;display:inline-block}
 .hero-sub{
   max-width:620px;margin-top:34px;color:var(--muted);
@@ -144,15 +152,26 @@ h1 .glitchable{position:relative;display:inline-block}
   display:flex;gap:clamp(20px,4vw,56px);margin-top:48px;flex-wrap:wrap;
   opacity:0;animation:fadeIn 1s ease 1.15s forwards;
 }
-.hero-meta div{border-left:1px solid var(--line);padding-left:18px}
+.hero-meta div{border-left:2px solid var(--gold);padding-left:18px}
 .hero-meta b{font-family:var(--en);font-size:clamp(22px,2.6vw,34px);color:var(--txt);display:block;line-height:1.1;letter-spacing:.02em}
 .hero-meta span{font-size:11px;color:var(--muted);letter-spacing:.12em}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:14px;margin-top:44px;align-self:flex-start;
+  font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:#1a1204;font-weight:700;
+  background:var(--gold);padding:17px 36px;position:relative;overflow:hidden;
+  opacity:0;animation:fadeIn 1s ease 1.35s forwards;transition:gap .3s;
+}
+.hero-cta::before{content:"";position:absolute;inset:0;background:#ffe2a0;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.7,0,.2,1)}
+.hero-cta:hover{gap:20px}
+.hero-cta:hover::before{transform:scaleX(1)}
+.hero-cta span,.hero-cta i{position:relative;z-index:1}
+.hero-cta i{font-style:normal;font-size:17px}
 .scroll-hint{
   position:absolute;bottom:120px;right:clamp(20px,5vw,64px);
   font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--muted);
   writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;
 }
-.scroll-hint::after{content:"";width:1px;height:56px;background:linear-gradient(var(--ice),transparent);animation:scrollLine 1.8s ease-in-out infinite}
+.scroll-hint::after{content:"";width:1px;height:56px;background:linear-gradient(var(--gold),transparent);animation:scrollLine 1.8s ease-in-out infinite}
 @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media(max-width:680px){.scroll-hint{display:none}}
 
@@ -292,6 +311,22 @@ td .ok{color:var(--ice);font-weight:700;font-size:15px}
 td .no{color:#39404f}
 tr:hover td{background:rgba(86,232,255,.03)}
 tr:hover td:first-child{background:#0e1220}
+/* mobile: 横スクロールをやめ、特典ごとのカード＋対象プランのピルに */
+@media(max-width:640px){
+  #benefits .tbl-wrap{overflow:visible;border:none;background:none}
+  #benefits table{display:block;min-width:0;width:100%;background:none}
+  #benefits thead{display:none}
+  #benefits tbody{display:block}
+  #benefits tbody tr{display:block;border:1px solid var(--line);background:var(--panel);padding:15px 16px 9px;margin-bottom:12px}
+  #benefits tbody tr:hover td{background:none}
+  #benefits tbody td{display:inline-block;border:none;padding:0;text-align:left;font-size:13px}
+  #benefits tbody td:first-child{display:block;position:static;min-width:0;background:none;color:var(--txt);font-weight:700;font-size:13.5px;letter-spacing:.02em;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:11px}
+  #benefits tbody td.n{display:none}
+  #benefits tbody td.y{display:inline-flex;align-items:center;margin:0 7px 7px 0;padding:6px 13px;border:1px solid rgba(86,232,255,.3);background:rgba(86,232,255,.07);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ice)}
+  #benefits tbody td.y .ok{display:none}
+  #benefits tbody td.y::before{content:attr(data-p)}
+  #benefits .sec-lead-note{display:block;margin-top:4px;color:var(--muted);font-size:11px}
+}
 
 /* ===== flow ===== */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:step}
@@ -397,11 +432,11 @@ footer small{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <p class="hero-label">SPONSORSHIP PROGRAM 2026 — 一般社団法人北海道ブレイクダンス協会</p>
+    <p class="hero-label">SPONSORS &amp; PARTNERS WANTED — SPONSORSHIP 2026</p>
     <h1>
-      <span class="line"><span class="glitchable">BREAK</span></span>
-      <span class="line"><span class="stroke glitchable">THE ICE,</span></span>
-      <span class="line"><span><span class="ice glitchable">HOKKAIDO</span>.</span></span>
+      <span class="line"><span class="stroke glitchable">SUPPORT</span></span>
+      <span class="line"><span class="glitchable">THE NEXT</span></span>
+      <span class="line"><span><span class="ice glitchable">GENERATION</span>.</span></span>
     </h1>
     <p class="hero-sub">
       <span class="ph">氷の大地から、</span><span class="ph">世界の頂点へ。</span><br>
@@ -414,6 +449,7 @@ footer small{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-
       <div><b data-count="2028">0</b><span>長野国スポ 公開競技</span></div>
       <div><b>NOW</b><span>強化選手 選定完了</span></div>
     </div>
+    <a class="hero-cta" href="#plans"><span>スポンサーメニューを見る</span><i>&rarr;</i></a>
     <div class="scroll-hint">SCROLL</div>
   </section>
 
@@ -577,14 +613,14 @@ footer small{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-
           </tr>
         </thead>
         <tbody>
-          <tr><td>通年での選手・大会協賛</td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>企業向けワークショップ企画</td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>冠大会の実施・露出</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>大会コンテンツ企画</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>イベントご招待</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>公式サイト掲載</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>各種SNS掲載</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="no">&mdash;</span></td></tr>
-          <tr><td>体験会・WS優先ご招待</td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td><td><span class="ok">●</span></td></tr>
+          <tr><td>通年での選手・大会協賛</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="n" data-p="大会メイン"><span class="no">&mdash;</span></td><td class="n" data-p="スポンサー"><span class="no">&mdash;</span></td><td class="n" data-p="協賛"><span class="no">&mdash;</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>企業向けワークショップ企画</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="n" data-p="大会メイン"><span class="no">&mdash;</span></td><td class="n" data-p="スポンサー"><span class="no">&mdash;</span></td><td class="n" data-p="協賛"><span class="no">&mdash;</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>冠大会の実施・露出</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="y" data-p="大会メイン"><span class="ok">●</span></td><td class="n" data-p="スポンサー"><span class="no">&mdash;</span></td><td class="n" data-p="協賛"><span class="no">&mdash;</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>大会コンテンツ企画</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="y" data-p="大会メイン"><span class="ok">●</span></td><td class="n" data-p="スポンサー"><span class="no">&mdash;</span></td><td class="n" data-p="協賛"><span class="no">&mdash;</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>イベントご招待</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="y" data-p="大会メイン"><span class="ok">●</span></td><td class="y" data-p="スポンサー"><span class="ok">●</span></td><td class="n" data-p="協賛"><span class="no">&mdash;</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>公式サイト掲載</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="y" data-p="大会メイン"><span class="ok">●</span></td><td class="y" data-p="スポンサー"><span class="ok">●</span></td><td class="y" data-p="協賛"><span class="ok">●</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>各種SNS掲載</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="y" data-p="大会メイン"><span class="ok">●</span></td><td class="y" data-p="スポンサー"><span class="ok">●</span></td><td class="y" data-p="協賛"><span class="ok">●</span></td><td class="n" data-p="小口支援"><span class="no">&mdash;</span></td></tr>
+          <tr><td>体験会・WS優先ご招待</td><td class="y" data-p="年間メイン"><span class="ok">●</span></td><td class="y" data-p="大会メイン"><span class="ok">●</span></td><td class="y" data-p="スポンサー"><span class="ok">●</span></td><td class="y" data-p="協賛"><span class="ok">●</span></td><td class="y" data-p="小口支援"><span class="ok">●</span></td></tr>
         </tbody>
       </table>
     </div>

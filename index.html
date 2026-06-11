@@ -290,15 +290,15 @@ section{position:relative;z-index:1;padding:clamp(90px,12vw,160px) clamp(20px,5v
 .g-track figure:hover img{filter:none;transform:scale(1.06)}
 
 /* ===== instagram ===== */
-.ig-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.ig-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,3vw,40px);align-items:stretch}
 .ig-embed{
   border:1px solid var(--line);background:var(--panel);overflow:hidden;position:relative;
 }
 .ig-embed iframe{width:100%;height:520px;border:0;display:block;background:#fff}
 .ig-cards{display:flex;flex-direction:column;gap:16px}
 .ig-card{
-  border:1px solid var(--line);background:var(--panel);padding:clamp(24px,3vw,36px);
-  display:block;position:relative;overflow:hidden;
+  border:1px solid var(--line);background:var(--panel);padding:clamp(24px,3vw,40px);
+  display:flex;flex-direction:column;justify-content:center;flex:1;position:relative;overflow:hidden;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s;
 }
 .ig-card:hover{transform:translateY(-4px);border-color:rgba(86,232,255,.5)}
@@ -306,7 +306,7 @@ section{position:relative;z-index:1;padding:clamp(90px,12vw,160px) clamp(20px,5v
 .ig-card .ig-id{font-family:var(--mono);font-size:clamp(14px,1.5vw,17px);font-weight:700;color:var(--ice);word-break:break-all}
 .ig-card p{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.8}
 .ig-card .follow{
-  display:inline-block;margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  align-self:flex-start;margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
   border:1px solid var(--ice);color:var(--ice);padding:9px 22px;transition:background .3s,color .3s;
 }
 .ig-card:hover .follow{background:var(--ice);color:#03141c}
@@ -605,12 +605,6 @@ footer small{display:block;text-align:center;font-family:var(--mono);font-size:1
           <p>JDSF HOKKAIDO BREAKING / HBDA。強化選手の活動・大会結果・国スポへの道のりを発信する公式アカウント。</p>
           <span class="follow">FOLLOW &rarr;</span>
         </a>
-        <a class="ig-card reveal" href="https://www.instagram.com/hbda_official/" target="_blank" rel="noopener">
-          <span class="ig-label">ASSOCIATION ACCOUNT</span>
-          <span class="ig-id">@hbda_official</span>
-          <p>北海道ブレイクダンス協会のアカウント。体験会・ワークショップなど協会活動のお知らせはこちら。</p>
-          <span class="follow">FOLLOW &rarr;</span>
-        </a>
       </div>
     </div>
   </section>
@@ -631,11 +625,11 @@ footer small{display:block;text-align:center;font-family:var(--mono);font-size:1
             <span class="ph"><strong>年間メインスポンサーから</strong></span><span class="ph"><strong>1万円の小口支援まで</strong>、</span><span class="ph">企業・個人を問わず参加できる</span><span class="ph">5つのプランをご用意しています。</span>
           </p>
           <div class="sb-chips">
-            <span>年間メイン <b>&yen;50万&tilde;</b></span>
-            <span>大会メイン <b>&yen;30万&tilde;</b></span>
-            <span>スポンサー <b>&yen;10万&tilde;</b></span>
-            <span>協賛 <b>&yen;5万&tilde;</b></span>
-            <span>小口支援 <b>&yen;1万&tilde;</b></span>
+            <span>年間メイン <b>&yen;50万〜</b></span>
+            <span>大会メイン <b>&yen;30万〜</b></span>
+            <span>スポンサー <b>&yen;10万〜</b></span>
+            <span>協賛 <b>&yen;5万〜</b></span>
+            <span>小口支援 <b>&yen;1万〜</b></span>
           </div>
         </div>
         <span class="sb-cta reveal">
@@ -666,8 +660,7 @@ footer small{display:block;text-align:center;font-family:var(--mono);font-size:1
     <div class="f-col">
       <h4>SUPPORT</h4>
       <a href="sponsor.html">スポンサー・協賛募集</a>
-      <a href="https://www.instagram.com/jdsf_hokkaido_breaking_hbda/" target="_blank" rel="noopener">Instagram（HBDA Breaking）</a>
-      <a href="https://www.instagram.com/hbda_official/" target="_blank" rel="noopener">Instagram（HBDA Official）</a>
+      <a href="https://www.instagram.com/jdsf_hokkaido_breaking_hbda/" target="_blank" rel="noopener">Instagram（@jdsf_hokkaido_breaking_hbda）</a>
     </div>
   </div>
   <small>&copy; 2026 HOKKAIDO BREAKDANCE ASSOCIATION. ALL RIGHTS RESERVED. &nbsp;|&nbsp; * 国スポ正式競技化は2032年大会以降の予定</small>
