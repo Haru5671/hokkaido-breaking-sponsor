@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>404 Not Found | JDSF北海道ブレイキン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06070c;
+  --ice:#56e8ff;
+  --heat:#ff2e63;
+  --txt:#eef2f7;
+  --muted:#8b94a8;
+  --line:rgba(255,255,255,.09);
+  --en:"Anton",sans-serif;
+  --jp:"Noto Sans JP",sans-serif;
+  --mono:"Space Grotesk",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--txt);font-family:var(--jp);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:24px;overflow-x:hidden;
+}
+.ph{display:inline-block}
+.wrap{max-width:640px}
+.label{
+  font-family:var(--mono);font-size:12px;letter-spacing:.35em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:18px;
+}
+h1{
+  font-family:var(--en);font-size:clamp(96px,24vw,200px);line-height:.9;
+  color:transparent;-webkit-text-stroke:2px var(--ice);
+  text-shadow:0 0 60px rgba(86,232,255,.25);
+}
+h1 .heat{-webkit-text-stroke:2px var(--heat);text-shadow:0 0 60px rgba(255,46,99,.25)}
+.msg-en{
+  font-family:var(--en);font-size:clamp(22px,5vw,36px);letter-spacing:.04em;
+  margin:26px 0 14px;color:var(--txt);
+}
+.msg-jp{font-size:14px;line-height:2;color:var(--muted);margin-bottom:36px}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+a.btn{
+  display:inline-block;padding:14px 34px;font-family:var(--mono);
+  font-size:13px;letter-spacing:.2em;text-decoration:none;
+  border:1px solid var(--ice);color:var(--ice);transition:.25s;
+}
+a.btn:hover{background:var(--ice);color:var(--bg)}
+a.btn.hot{border-color:var(--heat);color:var(--heat)}
+a.btn.hot:hover{background:var(--heat);color:var(--bg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="label">JDSF Hokkaido Breaking</p>
+  <h1>4<span class="heat">0</span>4</h1>
+  <p class="msg-en">FREEZE. PAGE NOT FOUND.</p>
+  <p class="msg-jp">
+    <span class="ph">お探しのページは</span><span class="ph">見つかりませんでした。</span><br>
+    <span class="ph">移動または削除された</span><span class="ph">可能性があります。</span>
+  </p>
+  <div class="btns">
+    <a class="btn" href="/hokkaido-breaking-sponsor/">TOP &rarr;</a>
+    <a class="btn hot" href="/hokkaido-breaking-sponsor/sponsor.html">SPONSOR &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
